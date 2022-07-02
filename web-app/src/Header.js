@@ -12,7 +12,6 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getCategoryFetch,getSubCategoryFetch } from './Components/actions';
-import ReactLogo from './Components/logo1.png';
 
 const useStyles = makeStyles(theme => ({
     root: {
