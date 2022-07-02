@@ -8,49 +8,49 @@ export const appStyles = makeStyles({
     },
 }, {index: 1});
 
-export const navBarStyles = makeStyles((theme) => ({
-    navBar: {
-        background: '#6666ff',
-        maxWidth: '88vw',
-        minHeight: '8vh',
-        maxHeight: '15vh',
-        position: 'static',
-        marginLeft: '6%',
+// export const navBarStyles = makeStyles((theme) => ({
+//     navBar: {
+//         background: '#6666ff',
+//         maxWidth: '88vw',
+//         minHeight: '8vh',
+//         maxHeight: '15vh',
+//         position: 'static',
+//         marginLeft: '6%',
         
-    },
-    container: {
-        paddingTop: '0.5%',
-        backgroundColor: '#6666ff',
-    },
-    home: {
-        marginRight: 'auto',
+//     },
+//     container: {
+//         paddingTop: '0.5%',
+//         backgroundColor: '#6666ff',
+//     },
+//     home: {
+//         marginRight: 'auto',
         
-    },
-    homeBtn: {
-        color: 'black',
-        fontSize: '4.5vh',
+//     },
+//     homeBtn: {
+//         color: 'black',
+//         fontSize: '4.5vh',
         
-    },
-    btn: {
-        marginRight: theme.spacing(2),
-        textTransform: 'none',
-        fontSize: '2.5vh',
-        '&:hover': {
-            textDecoration: 'underline',
-        },
-        '&:focus': {
-            textDecoration: 'underline',
-        },
+//     },
+//     btn: {
+//         marginRight: theme.spacing(2),
+//         textTransform: 'none',
+//         fontSize: '2.5vh',
+//         '&:hover': {
+//             textDecoration: 'underline',
+//         },
+//         '&:focus': {
+//             textDecoration: 'underline',
+//         },
         
         
-    },
-    mainText: {
-        // textAlign: 'center',
-        // marginLeft: '5%',
-        // paddingBottom: '2%',
-        // fontSize: '5vh',
-    },
-}), {index: 1});
+//     },
+//     mainText: {
+//         // textAlign: 'center',
+//         // marginLeft: '5%',
+//         // paddingBottom: '2%',
+//         // fontSize: '5vh',
+//     },
+// }), {index: 1});
 
 export const searchBarStyles = makeStyles((theme) => ({
     searchBar: {

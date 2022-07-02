@@ -7,42 +7,49 @@ import Meal from './Meal';
 import Paging from '../reusable/Paging';
 import MealContent from '../reusable/MealContent';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInitialData, getCategoryFetch, getSubCategoryFetch, getMealTypeFetch } from '../actions';
+import { setInitialData, 
+        getCategoryFetch, 
+        getSubCategoryFetch, 
+        getMealTypeFetch,
+        setSubCategory } from '../actions';
 import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 const CategoriesGrid = () => {
   const classes = categoryGridStyles();
 
   const dispatch = useDispatch();
-  // const categories=useSelector(state=>state.receipeReducer.categories);
-  //initial to fetch data
-  // dispatch(setInitialData())
   let loading = useSelector(state => state.receipeReducer.loadingData);
   let categories = useSelector(state => state.receipeReducer.categories);
   let subCategory = useSelector(state => state.receipeReducer.subCategory);
   let mealcontent = useSelector(state => state.receipeReducer.mealType);
   const [categoryType, setCategoryType] = useState();
   const [page, setPage] = useState(1);
-  
+
   useEffect(() => {
-    dispatch(getCategoryFetch())       
-  }, [1])
+    dispatch(getCategoryFetch())
+    setPage(1)
+  }, [])
 
   const handleCategory = (categoryType) => {
-    dispatch(getSubCategoryFetch(categoryType));
+    dispatch(setSubCategory(categoryType));
+    dispatch(getSubCategoryFetch());
     setCategoryType(categoryType);
+    setPage(1)
   }
 
   const handleMeal = (MealType) => {
-    dispatch(getMealTypeFetch(MealType));   
+    dispatch(getMealTypeFetch(MealType));
+    setPage(1)
   }
 
   const handleClose = () => {
     dispatch(getSubCategoryFetch(categoryType));
+    setPage(1)
   }
 
- 
+
   const handlePageChange = (e, value) => {
     setPage(value);
   };
@@ -66,7 +73,7 @@ const CategoriesGrid = () => {
         </>
       )}
       {subCategory &&
-        <>
+        <>          
           <Grid className={classes.grid} container spacing={3}>
             {subCategory.slice((page - 1) * 8, page * 8).map((meal, index) => {
               return (
@@ -76,7 +83,7 @@ const CategoriesGrid = () => {
               )
             })}
           </Grid>
-          <Paging type={subCategory} page={page} handlePageChange={handlePageChange} />
+          <Paging type={subCategory} page={page} handlePageChange={handlePageChange} />      
         </>
       }
       {mealcontent && <MealContent mealcontent={mealcontent} handleClose={handleClose} />}

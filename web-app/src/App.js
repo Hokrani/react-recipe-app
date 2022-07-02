@@ -1,6 +1,6 @@
 
 import Container from './Components/Container'
-import NavBar from './Components/NavBar'
+import Header from './Header';
 import Routes from './Components/Routes'
 import { appStyles } from './assets/styles/sharedStyles';
 
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className={classes.app}> 
-      <NavBar/>
+       <Header />
       <Container>
         <Routes/>
       </Container>

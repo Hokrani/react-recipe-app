@@ -3,12 +3,12 @@ import { Grid, Typography } from '@material-ui/core';
 import CategoriesGrid from './CategoriesGrid';
 import { textStyles } from '../../assets/styles/sharedStyles';
 
-function Home() {
+function Contact() {
     const classes = textStyles();
 
     return (
         <>
-            <Grid container>
+            {/* <Grid container>
                 <Grid item>
                     <Typography className={classes.mainText} variant="h4">Show Off  Receipe</Typography>
                 </Grid>
@@ -17,9 +17,11 @@ function Home() {
                 <Grid item>
                 </Grid>
             </Grid>
-            <CategoriesGrid/>
+            <CategoriesGrid/> */}
+
+            <h1> in conact us</h1>
         </>
     )
 }
 
-export default Home;
+export default Contact;

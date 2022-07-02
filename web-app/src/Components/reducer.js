@@ -3,11 +3,13 @@ import {SET_FETCH_DATA,
         FETCH_INITIAL_DATA,
          GET_CATEGORY_SUCCESS,
          GET_SUBCATEGORY_SUCCESS,
-         GET_MEALTYPE_SUCCESS
+         GET_MEALTYPE_SUCCESS,
+         SET_CATEGORY_TYPE,
 } from '../constant';
 
 const initial={ 
     loadingData:false, 
+    categoryType:'',
     categories:'',
     subCategory:'',
     mealType:'',
@@ -21,6 +23,8 @@ const receipeReducer = (state = initial, action) => {
             return{...state, loadingData:true}
         case SET_FETCH_DATA_SUCCESS:
                 return{...state, loadingData:false}
+        case SET_CATEGORY_TYPE:
+                return{...state,categoryType:action.categoryType}
         case GET_CATEGORY_SUCCESS:
             return{...state, loadingData:false,categories:action.category,subCategory:'',mealType:''}
         case GET_SUBCATEGORY_SUCCESS:

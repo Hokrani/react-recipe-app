@@ -1,10 +1,12 @@
-import { delay, put, race, takeEvery, takeLatest } from 'redux-saga/effects';
+import { delay, put, race, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import {
     INITIAL,
     SET_FETCH_DATA,
     SET_FETCH_DATA_SUCCESS,
     GET_CATEGORY_FETCH,
     GET_CATEGORY_SUCCESS,
+    SET_CATEGORY_TYPE,
+    SET_SUBCATEGORY_TYPE,
     GET_SUBCATEGORY_FETCH,
     GET_SUBCATEGORY_SUCCESS,
     GET_MEALTYPE_FETCH,
@@ -23,12 +25,11 @@ function* workInitialDataFetch() {
             .catch(err => console.log("Error while fetching the sub-category data")),
         timeout: delay(1000),
     })
-    yield put({ type: SET_FETCH_DATA_SUCCESS })
+    yield put({ type: GET_CATEGORY_SUCCESS, category })
 }
 
 function* getCategoryFetch() {
-    // alert(CATEGORY_URL)
-    yield put({ type: SET_FETCH_DATA });    
+    yield put({ type: SET_FETCH_DATA });
     const { category, timeout } = yield race({
         category: fetch(CATEGORY_URL)
             .then((res) => res.json())
@@ -39,18 +40,23 @@ function* getCategoryFetch() {
     yield put({ type: GET_CATEGORY_SUCCESS, category })
 }
 
-function* getSubCategoryFetch(action) {
-
+function* getSubCategoryFetch() {
+    const selectState = yield select();
     yield put({ type: SET_FETCH_DATA });
-    const url = SUBCATEGORY_URL + action.subCategoryType;
-    const { subcategory, timeout } = yield race({
-        subcategory: fetch(url)
-            .then((res) => res.json())
-            .then((json) => json.meals)
-            .catch(err => console.log("Error while fetching the sub-category data")),
-        timeout: delay(1000),
-    })
-    yield put({ type: GET_SUBCATEGORY_SUCCESS, subcategory });
+    const subCategoryType = selectState.receipeReducer.categoryType;
+    if (subCategoryType) {
+        const url = SUBCATEGORY_URL + subCategoryType;
+        const { subcategory, timeout } = yield race({
+            subcategory: fetch(url)
+                .then((res) => res.json())
+                .then((json) => json.meals)
+                .catch(err => console.log("Error while fetching the sub-category data")),
+            timeout: delay(1000),
+        })
+        yield put({ type: GET_SUBCATEGORY_SUCCESS, subcategory });
+    }else{
+        yield put({ type: SET_FETCH_DATA_SUCCESS });
+    }
 }
 
 
@@ -66,11 +72,17 @@ function* getMealTypeFetch(action) {
     })
     yield put({ type: GET_MEALTYPE_SUCCESS, mealType })
 }
+
+function* setCategoryType(action) {
+    let categoryType = action.categoryType;
+    yield put({ type: SET_CATEGORY_TYPE, categoryType })
+}
 function* Saga() {
     yield takeEvery(INITIAL, workInitialDataFetch)
-    yield takeLatest(GET_CATEGORY_FETCH, getCategoryFetch);
-    yield takeLatest(GET_SUBCATEGORY_FETCH, getSubCategoryFetch);
-    yield takeLatest(GET_MEALTYPE_FETCH, getMealTypeFetch);
+    yield takeEvery(GET_CATEGORY_FETCH, getCategoryFetch);
+    yield takeEvery(GET_SUBCATEGORY_FETCH, getSubCategoryFetch);
+    yield takeEvery(GET_MEALTYPE_FETCH, getMealTypeFetch);
+    yield takeEvery(SET_SUBCATEGORY_TYPE, setCategoryType);
 }
 
 export default Saga;
