@@ -3,7 +3,6 @@ import { Grid, Paper } from '@material-ui/core';
 import Category from './Category';
 import SearchBar from '../reusable/SearchBar';
 import { categoryGridStyles } from '../../assets/styles/sharedStyles';
-import { getMealByName } from '../../api/mealApi';
 import Meal from './Meal';
 import Paging from '../reusable/Paging';
 import MealContent from '../reusable/MealContent';
@@ -19,7 +18,6 @@ const CategoriesGrid = () => {
   // const categories=useSelector(state=>state.receipeReducer.categories);
   //initial to fetch data
   // dispatch(setInitialData())
-
   let loading = useSelector(state => state.receipeReducer.loadingData);
   let categories = useSelector(state => state.receipeReducer.categories);
   let subCategory = useSelector(state => state.receipeReducer.subCategory);
