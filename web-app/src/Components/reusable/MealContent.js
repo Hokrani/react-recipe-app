@@ -20,14 +20,14 @@ function MealContent(props) {
 
       <DialogTitle disableTypography={true} className={classes.dialogTitle}>
         <Typography variant="h4">How to make: {props.mealcontent.strMeal}</Typography>
-        <span style={{ float: 'right' }}>
+        {/* <span style={{ float: 'right' }}>
           <Button
             variant="contained"
             onClick={props.handleClose}
           >
             Back
           </Button>
-        </span>
+        </span> */}
       </DialogTitle>
 
       <CardMedia className={classescard.cardImg} image={props.mealcontent.strMealThumb} alt={props.mealcontent.strMealThumb} />

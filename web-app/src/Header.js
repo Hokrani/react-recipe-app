@@ -10,8 +10,8 @@ import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { getCategoryFetch,getSubCategoryFetch } from './Components/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoryFetch, getSubCategoryFetch } from './Components/actions';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,16 +40,17 @@ const Header = props => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
     const dispatch = useDispatch();
+    let subCategory = useSelector(state => state.receipeReducer.subCategory);
 
     const handleMenu = event => {
         setAnchorEl(event.currentTarget);
     };
 
-   const handleButtonClick = (pageURL,btnName) => {
-       if(btnName === 'Menu')
-             dispatch(getCategoryFetch())
-        else if(btnName === 'Sub Menu')
-              dispatch(getSubCategoryFetch());
+    const handleButtonClick = (pageURL, btnName) => {
+        if (btnName === 'Menu')
+            dispatch(getCategoryFetch())
+        else if (btnName === 'Sub Menu')
+            dispatch(getSubCategoryFetch());
         history.push(pageURL);
         setAnchorEl(null);
     };
@@ -57,12 +58,12 @@ const Header = props => {
     const menuItems = [
         {
             menuTitle: "Menu",
-            pageURL: "/"        
-        },    
+            pageURL: "/"
+        },
         {
             menuTitle: "Sub Menu",
-            pageURL: "/"        
-        }, 
+            pageURL: "/subMenu",
+        },
         {
             menuTitle: "About",
             pageURL: "/about"
@@ -73,7 +74,7 @@ const Header = props => {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                {/* <img src={ReactLogo} alt="React Logo" /> */}
+                    {/* <img src={ReactLogo} alt="React Logo" /> */}
                     <Typography variant="h6" className={classes.title}>
                         Hoks Receipe Specialist
                     </Typography>
@@ -103,29 +104,71 @@ const Header = props => {
                                 open={open}
                                 onClose={() => setAnchorEl(null)}
                             >
-                                {menuItems.map(menuItem => {
+                                <MenuItem onClick={() => handleButtonClick('/', 'Menu')}>
+                                    Menu
+                                </MenuItem>
+                                {subCategory ? (
+                                    <MenuItem onClick={() => handleButtonClick('/subMenu', 'Sub Menu')}>
+                                        Sub Menu
+                                    </MenuItem>
+                                )
+                                    : (
+                                        <MenuItem disabled={true}>
+                                            Sub Menu
+                                        </MenuItem>
+                                    )}
+                                <MenuItem onClick={() => handleButtonClick('/about', 'About')}>
+                                    About
+                                </MenuItem>
+                                {/* {menuItems.map(menuItem => {
                                     const { menuTitle, pageURL } = menuItem;
                                     return (
-                                        <MenuItem onClick={() => handleButtonClick(pageURL,menuTitle)}>
+                                        <MenuItem onClick={() => handleButtonClick(pageURL, menuTitle)}>
                                             {menuTitle}
                                         </MenuItem>
                                     );
-                                })}
+                                })} */}
                             </Menu>
                         </>
                     ) : (
                         <div className={classes.headerOptions}>
-                            {menuItems.map(menuItem => {
+                            <Button
+                                variant="contained"
+                                onClick={() => handleButtonClick('/', 'Menu')}
+                            >
+                                Menu
+                            </Button>
+                            {subCategory ? (
+                                <Button variant="contained"
+                                    onClick={() => handleButtonClick('/subMenu', 'Sub Menu')} >
+                                    Sub Menu
+                                </Button>)
+                                : (<Button variant="contained" disabled >
+                                    Sub Menu
+                                </Button>)}
+                            {/* <Button
+                                variant="contained"
+                                onClick={() => handleButtonClick('/subMenu', 'Sub Menu')}
+                            >
+                                Sub Menu
+                            </Button> */}
+                            <Button
+                                variant="contained"
+                                onClick={() => handleButtonClick('/about', 'About')}
+                            >
+                                About
+                            </Button>
+                            {/* {menuItems.map(menuItem => {
                                 const { menuTitle, pageURL } = menuItem;
                                 return (
                                     <Button
                                         variant="contained"
-                                        onClick={() => handleButtonClick(pageURL,menuTitle)}
+                                        onClick={() => handleButtonClick(pageURL, menuTitle)}
                                     >
                                         {menuTitle}
                                     </Button>
                                 );
-                            })}
+                            })} */}
                             {/* <Button
                 variant="contained"
                 onClick={() => handleButtonClick("/")}

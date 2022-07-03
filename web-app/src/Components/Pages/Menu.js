@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid} from '@material-ui/core';
 import Category from './Category';
-import SearchBar from '../reusable/SearchBar';
 import { categoryGridStyles } from '../../assets/styles/sharedStyles';
-import Meal from './Meal';
 import Paging from '../reusable/Paging';
-import MealContent from '../reusable/MealContent';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInitialData, 
-        getCategoryFetch, 
+import { getCategoryFetch, 
         getSubCategoryFetch, 
         getMealTypeFetch,
         setSubCategory } from '../actions';
@@ -16,15 +12,12 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 
-const CategoriesGrid = () => {
+const Menu = (props) => {
   const classes = categoryGridStyles();
-
+  const { history } = props;
   const dispatch = useDispatch();
   let loading = useSelector(state => state.receipeReducer.loadingData);
-  let categories = useSelector(state => state.receipeReducer.categories);
-  let subCategory = useSelector(state => state.receipeReducer.subCategory);
-  let mealcontent = useSelector(state => state.receipeReducer.mealType);
-  const [categoryType, setCategoryType] = useState();
+  let categories = useSelector(state => state.receipeReducer.categories); 
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -35,19 +28,19 @@ const CategoriesGrid = () => {
   const handleCategory = (categoryType) => {
     dispatch(setSubCategory(categoryType));
     dispatch(getSubCategoryFetch());
-    setCategoryType(categoryType);
+    history.push('/subMenu');
     setPage(1)
   }
 
-  const handleMeal = (MealType) => {
-    dispatch(getMealTypeFetch(MealType));
-    setPage(1)
-  }
+  // const handleMeal = (MealType) => {
+  //   dispatch(getMealTypeFetch(MealType));
+  //   setPage(1)
+  // }
 
-  const handleClose = () => {
-    dispatch(getSubCategoryFetch(categoryType));
-    setPage(1)
-  }
+  // const handleClose = () => {
+  //   dispatch(getSubCategoryFetch(categoryType));
+  //   setPage(1)
+  // }
 
 
   const handlePageChange = (e, value) => {
@@ -72,7 +65,7 @@ const CategoriesGrid = () => {
           <Paging type={categories} page={page} handlePageChange={handlePageChange} />
         </>
       )}
-      {subCategory &&
+      {/* {subCategory &&
         <>          
           <Grid className={classes.grid} container spacing={3}>
             {subCategory.slice((page - 1) * 8, page * 8).map((meal, index) => {
@@ -85,10 +78,10 @@ const CategoriesGrid = () => {
           </Grid>
           <Paging type={subCategory} page={page} handlePageChange={handlePageChange} />      
         </>
-      }
-      {mealcontent && <MealContent mealcontent={mealcontent} handleClose={handleClose} />}
+      } */}
+      {/* {mealcontent && <MealContent mealcontent={mealcontent} handleClose={handleClose} />} */}
     </>
   )
 }
 
-export default CategoriesGrid;
+export default Menu;

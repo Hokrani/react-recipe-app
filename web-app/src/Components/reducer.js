@@ -26,11 +26,11 @@ const receipeReducer = (state = initial, action) => {
         case SET_CATEGORY_TYPE:
                 return{...state,categoryType:action.categoryType}
         case GET_CATEGORY_SUCCESS:
-            return{...state, loadingData:false,categories:action.category,subCategory:'',mealType:''}
+            return{...state, loadingData:false,categories:action.category,mealType:''}
         case GET_SUBCATEGORY_SUCCESS:
                 return{...state,loadingData:false, categories:'',subCategory:action.subcategory,mealType:''}
         case GET_MEALTYPE_SUCCESS:
-            return{...state, loadingData:false,categories:'',subCategory:'',mealType:action.mealType}
+            return{...state, loadingData:false,categories:'',mealType:action.mealType}
         default:
             return state;
     }
