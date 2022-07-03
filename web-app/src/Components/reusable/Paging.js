@@ -1,9 +1,9 @@
 import { Pagination } from '@material-ui/lab';
-import { categoryGridStyles } from '../../assets/styles/sharedStyles';
+import { menuGridStyles } from '../../assets/styles/sharedStyles';
 
 
 const Paging = (props) => {
-    const classes = categoryGridStyles();
+    const classes = menuGridStyles();
     return (
         <>
             <Pagination

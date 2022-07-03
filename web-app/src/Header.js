@@ -120,14 +120,6 @@ const Header = props => {
                                 <MenuItem onClick={() => handleButtonClick('/about', 'About')}>
                                     About
                                 </MenuItem>
-                                {/* {menuItems.map(menuItem => {
-                                    const { menuTitle, pageURL } = menuItem;
-                                    return (
-                                        <MenuItem onClick={() => handleButtonClick(pageURL, menuTitle)}>
-                                            {menuTitle}
-                                        </MenuItem>
-                                    );
-                                })} */}
                             </Menu>
                         </>
                     ) : (
@@ -146,47 +138,12 @@ const Header = props => {
                                 : (<Button variant="contained" disabled >
                                     Sub Menu
                                 </Button>)}
-                            {/* <Button
-                                variant="contained"
-                                onClick={() => handleButtonClick('/subMenu', 'Sub Menu')}
-                            >
-                                Sub Menu
-                            </Button> */}
                             <Button
                                 variant="contained"
                                 onClick={() => handleButtonClick('/about', 'About')}
                             >
                                 About
                             </Button>
-                            {/* {menuItems.map(menuItem => {
-                                const { menuTitle, pageURL } = menuItem;
-                                return (
-                                    <Button
-                                        variant="contained"
-                                        onClick={() => handleButtonClick(pageURL, menuTitle)}
-                                    >
-                                        {menuTitle}
-                                    </Button>
-                                );
-                            })} */}
-                            {/* <Button
-                variant="contained"
-                onClick={() => handleButtonClick("/")}
-              >
-                HOME
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => handleButtonClick("/contact")}
-              >
-                CONTACT
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => handleButtonClick("/about")}
-              >
-                ABOUT
-              </Button> */}
                         </div>
                     )}
                 </Toolbar>

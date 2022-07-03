@@ -1,64 +1,80 @@
 
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import Paging from '../reusable/Paging';
-import { categoryGridStyles } from '../../assets/styles/sharedStyles';
-import { useDispatch } from 'react-redux';
-import Meal from './Meal';
-import { getMealTypeFetch, getCategoryFetch, getSubCategoryFetch } from '../actions';
+import { subMenuStyles } from '../../assets/styles/sharedStyles';
+import { connect } from 'react-redux';
+import Meal from '../reusable/Meal';
+import { getMealTypeFetch,  getSubCategoryFetch } from '../actions';
 import MealContent from '../reusable/MealContent';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const SubMenu = (props) => {
-    const dispatch = useDispatch();
-    const classes = categoryGridStyles();
-    const [page, setPage] = useState(1);
-    const { history } = props;
-    let loading = useSelector(state => state.receipeReducer.loadingData);
-    let subCategory = useSelector(state => state.receipeReducer.subCategory);
-    let mealcontent = useSelector(state => state.receipeReducer.mealType);
-
-
-    useEffect(() => {
-        dispatch(getSubCategoryFetch());
-        setPage(1)
-    }, [])
-    const handleMeal = (MealType) => {
-        dispatch(getMealTypeFetch(MealType));
-        setPage(1)
+class SubMenu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { page: 1 }
+        this.classes = subMenuStyles;
+        this.myRef = React.createRef();
     }
-    const handlePageChange = (e, value) => {
-        setPage(value);
+
+    scrollToMyRef = () => window.scrollTo(0, 0)
+    componentDidMount() {
+        this.props.getSubCategoryFetch();
+        this.setState({ page: 1 });
+        this.scrollToMyRef();
+    }
+    componentDidUpdate() {
+        this.scrollToMyRef();
+    }
+    handleMeal = (MealType) => {
+        this.props.getMealTypeFetch(MealType);
+        this.setState({ page: 1 });
+    }
+    handlePageChange = (e, value) => {
+        this.setState({ page: value });
     };
-    const handleClose = () => {
-        dispatch(getSubCategoryFetch());
-        setPage(1)
+    handleClose = () => {
+        this.props.getSubCategoryFetch();
+        this.setState({ page: 1 });
     }
-    useEffect(() => {
-        dispatch(getCategoryFetch())
-        setPage(1)
-    }, [])
-    return (
-        <>
-            {loading && <CircularProgress color="inherit" />}            
-            {mealcontent && <MealContent mealcontent={mealcontent} handleClose={handleClose} />}
-            {subCategory && !mealcontent &&
-                <>
-                    <Grid className={classes.grid} container spacing={3}>
-                        {subCategory.slice((page - 1) * 8, page * 8).map((meal, index) => {
-                            return (
-                                <Grid className={classes.gridItem} item xs={6} sm={3} key={index}>
-                                    <Meal meal={meal} handleMeal={handleMeal} />
-                                </Grid>
-                            )
-                        })}
-                    </Grid>
-                    <Paging type={subCategory} page={page} handlePageChange={handlePageChange} />
-                </>
-            }
-        </>
-    )
+    render() {
+        return (
+            <>
+                <div ref={this.myRef}>
+                    {this.props.loading && <CircularProgress color="inherit" />}
+                    {this.props.mealcontent && <MealContent mealcontent={this.props.mealcontent} handleClose={this.handleClose} />}
+                    {this.props.subCategory && !this.props.mealcontent &&
+                        <>
+                            <Grid className={this.classes.grid} container spacing={3}>
+                                {this.props.subCategory.slice((this.state.page - 1) * 8, this.state.page * 8).map((meal, index) => {
+                                    return (
+                                        <Grid className={this.classes.gridItem} item xs={6} sm={3} key={index}>
+                                            <Meal meal={meal} handleMeal={this.handleMeal} />
+                                        </Grid>
+                                    )
+                                })}
+                            </Grid>
+                            <Paging type={this.props.subCategory} page={this.state.page} handlePageChange={this.handlePageChange} />
+                        </>
+                    }
+                </div>
+            </>
+        )
+    }
 }
+function mapStateToProps(state) {
+    return {
+        loading: state.receipeReducer.loadingData,
+        subCategory: state.receipeReducer.subCategory,
+        mealcontent: state.receipeReducer.mealType
+    }
+};
 
-export default SubMenu;
+function mapDispatchToProps(dispatch) {
+    return {
+        getSubCategoryFetch: () => dispatch(getSubCategoryFetch()),
+        getMealTypeFetch: (MealType) => dispatch(getMealTypeFetch(MealType)),
+        getSubCategoryFetch: () => dispatch(getSubCategoryFetch()),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SubMenu);
