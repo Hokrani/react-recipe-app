@@ -11,11 +11,17 @@ import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategoryFetch, getSubCategoryFetch } from './Components/actions';
+import { getCategoryFetch, getSubCategoryFetch } from '../../actions/actions'
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import { Link as NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+        paddingTop: '10px',
+        paddingBottom: '10px',
+        paddingRight:'20px',
+        paddingLeft:'20px',
     },
     menuButton: {
         marginRight: theme.spacing(2)
@@ -23,13 +29,20 @@ const useStyles = makeStyles(theme => ({
     title: {
         [theme.breakpoints.down("xs")]: {
             flexGrow: 1
-        }
+        },
+        color: 'black',
     },
     headerOptions: {
         display: "flex",
         flex: 1,
         justifyContent: "space-evenly"
-    }
+    },
+    homeBtn: {
+        color: 'black',
+        fontSize: '4.5vh',
+        paddingRight: '30px'
+        
+    },
 }));
 
 const Header = props => {
@@ -72,11 +85,15 @@ const Header = props => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
+            <AppBar position="static" color="#ffffff">
+                <Toolbar >
                     {/* <img src={ReactLogo} alt="React Logo" /> */}
-                    <Typography variant="h6" className={classes.title}>
-                        Hoks Receipe Specialist
+                    <IconButton className={classes.home} component={NavLink} 
+                                to="/">
+                    <HomeOutlinedIcon className={classes.homeBtn}/>
+                    </IconButton>
+                    <Typography variant="h4" className={classes.title}>
+                        Receipe
                     </Typography>
                     {isMobile ? (
                         <>

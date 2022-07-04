@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Menu from './Pages/Menu';
-import SubMenu from './Pages/SubMenu';
-import About from './Pages/About';
+import Menu from '../components/pages/Menu';
+import SubMenu from '../components/pages/SubMenu';
+import About from '../components/pages/About';
 function Routes() {
     return (
         <Switch>

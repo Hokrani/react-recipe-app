@@ -15,6 +15,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
+      fontFamily: 'Georgia'
     },
   }));
   
@@ -43,8 +44,8 @@ const Ingredients=(props)=> {
     })
     // Add table for displaying ingredients
     return (      
-        <TableContainer component={Paper} style={{ paddingTop: '5%',}}>
-        <Table xs={{ minWidth: 200 }} aria-label="customized table">
+        <TableContainer component={Paper} style={{ paddingTop: '2%', width:'300px',margin: 'auto'}}>
+        <Table xs={{ minWidth: 100, }} aria-label="customized table">
             <TableHead>
                 <TableRow>
                     <StyledTableCell>Ingredients</StyledTableCell>

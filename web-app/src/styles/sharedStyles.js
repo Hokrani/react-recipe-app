@@ -1,21 +1,21 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export const appStyles = makeStyles({
     app: {
         // minWidth: '100vw',
         minHeight: '100vh',
-        backgroundColor: '#6666ff',
+        backgroundColor: '#F0DEB4',
     },
-}, {index: 1});
+}, { index: 1 });
 export const containerStyles = makeStyles({
     container: {
         maxWidth: '85vw',
         minHeight: '84vh',
-        backgroundColor: '#5c00e6',
+        backgroundColor: '#ffffff',
         marginTop: '2vh',
         boxShadow: '0 7px 11px 0 rgba(0, 0, 0, 0.11), 0 6px 20px 0 rgba(0, 0, 0, 0.18)',
     },
-}, {index: 1});
+}, { index: 1 });
 
 export const mealContentStyles = makeStyles({
     dialog: {
@@ -24,35 +24,36 @@ export const mealContentStyles = makeStyles({
     title: {
         color: 'black',
         fontStyle: 'oblique',
-        background: '#6666ff',
+        background: '#646D7E',
     },
     infoText: {
         color: 'black',
-        paddingBottom: '2%',
-        fontFamily:'Georgia',
+        // paddingBottom: '2%',
+        fontFamily: 'Georgia',
+        paddingLeft:'2%'
     },
-   
+
     action: {
-        background: '#6666ff',
-        
+        background: '#ffffff',
+
     },
     cardImg: {
         paddingTop: '70.00%',
     },
-    
+
     ingredients: {
         paddingTop: '1%',
         marginBottom: '1%',
         fontSize: '3.5vh',
         textDecorationLine: 'underline',
     },
-   
-}, {index: 1});
+
+}, { index: 1 });
 
 export const cardStyles = makeStyles({
     card: {
-        width:  '100%',
-        height: '40vh',
+        width: '100%',
+        height: '45vh',
         background: '#ffffff',
         borderStyle: 'solid',
         border: 3.6,
@@ -61,7 +62,7 @@ export const cardStyles = makeStyles({
             boxShadow: '0 7px 11px 0 rgba(0, 0, 0, 0.24), 0 6px 20px 0 rgba(0, 0, 0, 0.31)',
         },
         overflow: "scroll",
-        overflowX:"hidden",
+        overflowX: "hidden",
     },
     cardAvatar: {
         textAlign: 'center',
@@ -72,45 +73,44 @@ export const cardStyles = makeStyles({
     },
     cardContent: {
         maxHeight: '50%',
-        maxWidth: '100%',     
+        maxWidth: '100%',
     },
     cardMainText: {
-        fontStyle: 'oblique', 
+        fontStyle: 'oblique',
         overflow: "hidden",
         textOverflow: "ellipsis",
-        whiteSpace: "nowrap",  
-        fontSize: '2.8vh',     
+        whiteSpace: "nowrap",
+        fontSize: '2.8vh',
     },
     cardOverline: {
-        fontWeight: 600, 
+        fontWeight: 600,
         fontSize: '2.25vh',
-        fontFamily:'Arial Black',
+        fontFamily: 'Arial Black',
     },
-    
-    cardInfoText: {        
+
+    cardInfoText: {
         fontSize: '2vh',
-        fontFamily:'Georgia',
+        fontFamily: 'Georgia',
     }
-}, {index: 1});
+}, { index: 1 });
 
 
 export const subMenuCardStyles = makeStyles({
-    // card: {
-    //     width:  '100%',
-    //     height: '35vh',
-    //     background: '#ffffff',
-    //     borderStyle: 'solid',
-    //     border: 3.6,
-    //     borderColor: '#8CA3BA',
-    //     '&:hover': {
-    //         boxShadow: '0 7px 11px 0 rgba(0, 0, 0, 0.24), 0 6px 20px 0 rgba(0, 0, 0, 0.31)',
-    //     },
-    //     overflow: "scroll",
-    //     overflowX:"hidden",
-    // },
+    mobilecard: {
+        height: '30vh',
+        overflow: "scroll",
+        overflowX: "hidden",
+        background: '#ffffff',
+        borderStyle: 'solid',
+        border: 3.6,
+        borderColor: '#8CA3BA',
+        '&:hover': {
+            boxShadow: '0 7px 11px 0 rgba(0, 0, 0, 0.24), 0 6px 20px 0 rgba(0, 0, 0, 0.31)',
+        },
+    },
     card: {
-        width:  '100%',
-        height: '35vh',
+        width: '100%',
+        height: '40vh',
         background: '#ffffff',
         borderStyle: 'solid',
         border: 3.6,
@@ -119,59 +119,63 @@ export const subMenuCardStyles = makeStyles({
             boxShadow: '0 7px 11px 0 rgba(0, 0, 0, 0.24), 0 6px 20px 0 rgba(0, 0, 0, 0.31)',
         },
         overflow: "scroll",
-        overflowX:"hidden",
+        overflowX: "hidden",
     },
     cardImg: {
         paddingTop: '70.00%',
     },
     cardContent: {
         maxHeight: '50%',
-        maxWidth: '100%',     
+        maxWidth: '100%',
     },
     cardOverline: {
-        fontWeight: 600, 
+        fontWeight: 600,
         fontSize: '2vh',
-        fontFamily:'Arial Black',
+        fontFamily: 'Arial Black',
     },
-    
-}, {index: 1});
+
+}, { index: 1 });
 
 export const menuGridStyles = makeStyles((theme) => ({
     grid: {
-        background: '#ffffff', 
+        background: '#ffffff',
+
     },
     gridItem: {
-        width:  '100%',
+        width: '100%',
         height: '100%',
+
     },
     pagination: {
         marginTop: theme.spacing(2)
     }
-}), {index: 1});
+}), { index: 1 });
 
 
 export const subMenuStyles = makeStyles((theme) => ({
     grid: {
-        background: '#ffffff', 
+        background: '#ffffff',
+
     },
     gridItem: {
-        width:  '100%',
+        width: '100%',
         height: '100%',
+
     },
     pagination: {
         marginTop: theme.spacing(2)
     }
-}), {index: 1});
+}), { index: 1 });
 
 export const textStyles = makeStyles({
     mainText: {
         paddingTop: '3%',
         textAlign: 'center',
-        fontWeight: 600, 
+        fontWeight: 600,
         fontSize: '5vh',
     },
     infoText: {
         textAlign: 'center',
         fontSize: '3vh',
     },
-}, {index: 1});
+}, { index: 1 });

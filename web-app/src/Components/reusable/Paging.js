@@ -1,5 +1,5 @@
 import { Pagination } from '@material-ui/lab';
-import { menuGridStyles } from '../../assets/styles/sharedStyles';
+import { menuGridStyles } from '../../styles/sharedStyles';
 
 
 const Paging = (props) => {

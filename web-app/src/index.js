@@ -6,8 +6,8 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore,applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import receipeReducer from './Components/reducer';
-import Saga from './Components/sagas';
+import receipeReducer from './stores/reducer';
+import Saga from './sagas/sagas';
 
 const sagaMiddleware=createSagaMiddleware();
 const rootReducer = combineReducers({ receipeReducer });

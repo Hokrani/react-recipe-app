@@ -4,25 +4,22 @@ import {
   Dialog as MyDialog, DialogActions, DialogContent,
   DialogContentText, DialogTitle, Typography, CardMedia
 } from '@material-ui/core';
-import Ingredients from '../../Components/reusable/Ingredients';
-import { mealContentStyles } from '../../assets/styles/sharedStyles';
-import { cardStyles } from '../../assets/styles/sharedStyles';
+import Ingredients from './Ingredients';
+import { mealContentStyles } from '../../styles/sharedStyles';
+import { cardStyles } from '../../styles/sharedStyles';
 import ReactPlayer from "react-player";
 
 function MealContent(props) {
   const classes = mealContentStyles();
   const [scroll, setScroll] = useState('paper');
+  const stepsText = props.mealcontent.strInstructions.split(".");
 
 
   return (
     <div>
-
       <DialogTitle disableTypography={true} className={classes.title}  >
-        <Typography variant="h4">How to make: {props.mealcontent.strMeal}</Typography>       
+        <Typography variant="h4">{props.mealcontent.strMeal}</Typography>
       </DialogTitle>
-
-      {/* <CardMedia sx={{ maxWidth: 300 }} paddingTop="100%" height="140" image={props.mealcontent.strMealThumb} alt={props.mealcontent.strMealThumb} /> */}
-      
       <CardMedia
         component="img"
         xs={{ maxHeight: 50 }}
@@ -30,25 +27,52 @@ function MealContent(props) {
         image={props.mealcontent.strMealThumb}
         alt="green iguana"
       />
-      {/* className={classes.cardImg} */}
       <DialogContent
         dividers={scroll === 'paper'}
         className={classes.dialog}>
-        <Typography variant="h5" className={classes.ingredients}>How to Prepare: </Typography>
-        <DialogContentText
+        <Typography variant="h5" className={classes.ingredients}>
+          How to Make {props.mealcontent.strMeal}
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom component="div" style={{ fontWeight: 'bold' }}>
+          Step to prepare :
+        </Typography>
+
+        {stepsText.map((item, index) => {
+          if ((stepsText.length - 1) !== index)
+            return (<DialogContentText className={classes.infoText}>
+                        {index + 1}.{item}.
+                   </DialogContentText>
+                   )
+        }
+        )}
+
+
+
+        {/* <DialogContentText
           className={classes.infoText}
         >{props.mealcontent.strInstructions}
-        </DialogContentText>
-        <Typography variant="h5" className={classes.ingredients}>Watch </Typography>
-        <ReactPlayer
-          width={"100%"}
-          height="80vh"
-          url={props.mealcontent.strYoutube}
-          muted={true}
-          playing={true}
-          controls={true}
-        />
-        <Ingredients meal={props.mealcontent} />
+        </DialogContentText> */}
+        {props.mealcontent.strYoutube && (
+          <>
+            <Typography variant="h5" className={classes.ingredients}>
+              Watch the step by step recipe of {props.mealcontent.strMeal} here: </Typography>
+            <ReactPlayer
+              width={"100%"}
+              height="50vh"
+              url={props.mealcontent.strYoutube}
+              muted={true}
+              playing={true}
+              controls={true}
+            />
+          </>
+        )}
+        {props.mealcontent && (
+          <>
+            <Typography variant="h5" className={classes.ingredients}>
+              Ingredients of {props.mealcontent.strMeal} here: </Typography>
+            <Ingredients meal={props.mealcontent} />
+          </>
+        )}
       </DialogContent>
 
       <DialogActions className={classes.action}>

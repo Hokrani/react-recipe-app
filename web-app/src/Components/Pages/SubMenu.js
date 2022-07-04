@@ -2,10 +2,10 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import Paging from '../reusable/Paging';
-import { subMenuStyles } from '../../assets/styles/sharedStyles';
+import { subMenuStyles } from '../../styles/sharedStyles';
 import { connect } from 'react-redux';
 import Meal from '../reusable/Meal';
-import { getMealTypeFetch,  getSubCategoryFetch } from '../actions';
+import { getMealTypeFetch,  getSubCategoryFetch } from '../../actions/actions';
 import MealContent from '../reusable/MealContent';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -13,7 +13,7 @@ class SubMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = { page: 1 }
-        this.classes = subMenuStyles;
+        this.classes = '';
         this.myRef = React.createRef();
     }
 
@@ -21,6 +21,7 @@ class SubMenu extends React.Component {
     componentDidMount() {
         this.props.getSubCategoryFetch();
         this.setState({ page: 1 });
+        this.classes=subMenuStyles;
         this.scrollToMyRef();
     }
     componentDidUpdate() {
@@ -45,7 +46,7 @@ class SubMenu extends React.Component {
                     {this.props.mealcontent && <MealContent mealcontent={this.props.mealcontent} handleClose={this.handleClose} />}
                     {this.props.subCategory && !this.props.mealcontent &&
                         <>
-                            <Grid className={this.classes.grid} container spacing={3}>
+                            <Grid className={this.classes.card} container spacing={3}>
                                 {this.props.subCategory.slice((this.state.page - 1) * 8, this.state.page * 8).map((meal, index) => {
                                     return (
                                         <Grid className={this.classes.gridItem} item xs={6} sm={3} key={index}>

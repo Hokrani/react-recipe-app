@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useRef } from 'react';
 import { Grid } from '@material-ui/core';
 import Category from '../reusable/Category';
-import { menuGridStyles } from '../../assets/styles/sharedStyles';
+import { menuGridStyles } from '../../styles/sharedStyles';
 import Paging from '../reusable/Paging';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -9,7 +9,7 @@ import {
   getSubCategoryFetch,
   getMealTypeFetch,
   setSubCategory
-} from '../actions';
+} from '../../actions/actions';
 import CircularProgress from '@mui/material/CircularProgress';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { textStyles } from '../../assets/styles/sharedStyles';
+import { textStyles } from '../../styles/sharedStyles';
 
 function About() {
     const classes = textStyles();

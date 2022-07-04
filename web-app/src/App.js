@@ -1,8 +1,8 @@
 
-import Container from './Components/Container'
-import Header from './Header';
-import Routes from './Components/Routes'
-import { appStyles } from './assets/styles/sharedStyles';
+import Container from './containers/Container'
+import Header from './components/layout/Header';
+import Routes from './routes/Routes';
+import { appStyles } from './styles/sharedStyles';
 
 function App() {
   const classes = appStyles();
