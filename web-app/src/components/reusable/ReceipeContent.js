@@ -7,6 +7,7 @@ import {
 import Ingredients from './Ingredients';
 import { receipeContentStyles } from '../../styles/sharedStyles';
 import ReactPlayer from "react-player";
+import Link from '@mui/material/Link';
 
 function ReceipeContent(props) {
   const classes = receipeContentStyles();
@@ -77,6 +78,13 @@ function ReceipeContent(props) {
           </>
         )}
       </DialogContent>
+      {props.receipeContent.strSource &&
+        <Typography variant="caption">
+          Source of above information from
+          <Link href={props.receipeContent.strSource}> {props.receipeContent.strSource} </Link>
+        </Typography>
+      }
+
 
       <DialogActions className={classes.action}>
         <Button

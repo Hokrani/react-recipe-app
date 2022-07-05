@@ -52,7 +52,7 @@ const Menu = (props) => {
               {categories.slice((page - 1) * 8, page * 8).map((category, index) => {
                 return (
                   <Grid className={classes.gridItem} item xs={6} sm={3} key={index}>
-                    <Category category={category} handleCategory={handleCategory} />
+                    <Category key={index} category={category} handleCategory={handleCategory} />
                   </Grid>
                 )
               })}

@@ -14,18 +14,23 @@ import {
     SUBCATEGORY_URL,
     RECEIPETYPE_URL
 } from '../constant';
-
+import default_menu from '../data/default_menu.json'
+import default_subMenu from '../data/default_subMenu.json';
+import default_receipe from '../data/default_receipe.json';
 
 
 function* getCategoryFetch() {
     yield put({ type: SET_FETCH_DATA });
-    const { category } = yield race({
-        category: fetch(CATEGORY_URL)
+    const { response } = yield race({
+        response: fetch(CATEGORY_URL)
             .then((res) => res.json())
             .then((json) => json.categories)
-            .catch(err => console.log("Error while fetching the sub-category data")),
+            .catch(err => console.log("Error while fetching the category data")),
         timeout: delay(1000),
     })
+    const category = (response === undefined || response === null || response.length === 0)
+        ? default_menu.categories
+        : response;
     yield put({ type: GET_CATEGORY_SUCCESS, category })
 }
 
@@ -35,15 +40,18 @@ function* getSubCategoryFetch() {
     const subCategoryType = selectState.receipeReducer.categoryType;
     if (subCategoryType) {
         const url = SUBCATEGORY_URL + subCategoryType;
-        const { subcategory } = yield race({
-            subcategory: fetch(url)
+        const { response } = yield race({
+            response: fetch(url)
                 .then((res) => res.json())
                 .then((json) => json.meals)
                 .catch(err => console.log("Error while fetching the sub-category data")),
             timeout: delay(1000),
         })
+        const subcategory = (response === undefined || response === null || response.length === 0)
+            ? default_subMenu.meals
+            : response;
         yield put({ type: GET_SUBCATEGORY_SUCCESS, subcategory });
-    }else{
+    } else {
         yield put({ type: SET_FETCH_DATA_SUCCESS });
     }
 }
@@ -52,14 +60,17 @@ function* getSubCategoryFetch() {
 function* getReceipeTypeFetch(action) {
     yield put({ type: SET_FETCH_DATA })
     const url = RECEIPETYPE_URL + action.receipeType;
-    const { receipeType } = yield race({
-        receipeType: fetch(url)
+    const { response } = yield race({
+        response: fetch(url)
             .then((res) => res.json())
             .then((json) => json.meals[0])
             .catch(err => console.log("Error while fetching the sub-category data")),
         timeout: delay(1000),
     })
-    yield put({ type: GET_RECEIPETYPE_SUCCESS, receipeType})
+    const receipeType = (response === undefined || response === null || response.length === 0)
+        ? default_receipe.meals[0]
+        : response;
+    yield put({ type: GET_RECEIPETYPE_SUCCESS, receipeType })
 }
 
 function* setCategoryType(action) {

@@ -50,7 +50,7 @@ class SubMenu extends React.Component {
                                 {this.props.subCategory.slice((this.state.page - 1) * 8, this.state.page * 8).map((receipe, index) => {
                                     return (
                                         <Grid className={this.classes.gridItem} item xs={6} sm={3} key={index}>
-                                            <Receipe receipe={receipe} handleReceipe={this.handleReceipe} />
+                                            <Receipe key={index} receipe={receipe} handleReceipe={this.handleReceipe} />
                                         </Grid>
                                     )
                                 })}

@@ -15,8 +15,8 @@ const Paging = (props) => {
                 boundaryCount={2}
                 onChange={props.handlePageChange}
                 className={classes.pagination}
-                color="secondary"
-                variant="contained"
+                color="primary"
+                variant="outlined"
                 shape="rounded"
                 size="large"
                 showFirstButton showLastButton
