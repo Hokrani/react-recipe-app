@@ -1,11 +1,13 @@
 import { Pagination } from '@material-ui/lab';
 import { menuGridStyles } from '../../styles/sharedStyles';
+import Box from '@mui/material/Box';
 
 
 const Paging = (props) => {
     const classes = menuGridStyles();
     return (
         <>
+        <Box display="flex" justifyContent="center">
             <Pagination
                 count={Math.ceil(props.type.length / 8)}
                 page={props.page}
@@ -19,6 +21,7 @@ const Paging = (props) => {
                 size="large"
                 showFirstButton showLastButton
             />
+            </Box>
         </>
     )
 }

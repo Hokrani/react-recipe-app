@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export const appStyles = makeStyles({
     app: {
         // minWidth: '100vw',
-        minHeight: '100vh',
+        minHeight: '10vh',
         backgroundColor: '#F0DEB4',
         paddingBottom:'1%'
     },
@@ -13,7 +13,7 @@ export const containerStyles = makeStyles({
         maxWidth: '85vw',
         minHeight: '84vh',
         backgroundColor: '#ffffff',
-        marginTop: '2vh',
+        marginTop: '4vh',
         boxShadow: '0 7px 11px 0 rgba(0, 0, 0, 0.11), 0 6px 20px 0 rgba(0, 0, 0, 0.18)',
     },
 }, { index: 1 });
@@ -138,6 +138,7 @@ export const subMenuCardStyles = makeStyles({
 }, { index: 1 });
 
 export const menuGridStyles = makeStyles((theme) => ({
+    
     grid: {
         background: '#ffffff',
 
