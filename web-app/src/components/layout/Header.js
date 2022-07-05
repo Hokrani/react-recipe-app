@@ -68,20 +68,20 @@ const Header = props => {
         setAnchorEl(null);
     };
 
-    const menuItems = [
-        {
-            menuTitle: "Menu",
-            pageURL: "/"
-        },
-        {
-            menuTitle: "Sub Menu",
-            pageURL: "/subMenu",
-        },
-        {
-            menuTitle: "About",
-            pageURL: "/about"
-        }
-    ];
+    // const menuItems = [
+    //     {
+    //         menuTitle: "Menu",
+    //         pageURL: "/"
+    //     },
+    //     {
+    //         menuTitle: "Sub Menu",
+    //         pageURL: "/subMenu",
+    //     },
+    //     {
+    //         menuTitle: "About",
+    //         pageURL: "/about"
+    //     }
+    // ];
 
     return (
         <div className={classes.root}>

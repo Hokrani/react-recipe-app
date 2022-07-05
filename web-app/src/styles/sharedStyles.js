@@ -5,6 +5,7 @@ export const appStyles = makeStyles({
         // minWidth: '100vw',
         minHeight: '100vh',
         backgroundColor: '#F0DEB4',
+        paddingBottom:'1%'
     },
 }, { index: 1 });
 export const containerStyles = makeStyles({
@@ -17,7 +18,7 @@ export const containerStyles = makeStyles({
     },
 }, { index: 1 });
 
-export const mealContentStyles = makeStyles({
+export const receipeContentStyles = makeStyles({
     dialog: {
         background: '#ffffff',
     },

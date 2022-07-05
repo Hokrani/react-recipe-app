@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryFetch,
   getSubCategoryFetch,
-  getMealTypeFetch,
   setSubCategory
 } from '../../actions/actions';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -28,7 +27,7 @@ const Menu = (props) => {
     dispatch(getCategoryFetch());
     setPage(1);
     scrollToRef(myRef);
-  }, [])
+  },[dispatch])
 
   const handleCategory = (categoryType) => {
     dispatch(setSubCategory(categoryType));

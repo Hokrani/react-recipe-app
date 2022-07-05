@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import {
-    Card, CardHeader, CardMedia,
-    CardContent, Avatar, Typography
+    Card, CardMedia,
+    CardContent, Typography
 } from '@material-ui/core';
 import { cardStyles } from '../../styles/sharedStyles';
 import ShowMoreText from "react-show-more-text";
@@ -28,31 +28,23 @@ const Category = (props) => {
 
     return (
         <div ref={myRef}>
-
-            {/* <Button className={classes.dialogBtn} size="small" onClick={handleClickOpen('paper')}>More...</Button> */}
-
             <Card className={classes.card} >
-                {/* <CardHeader avatar={
-                    <Avatar className={classes.cardAvatar}>
-                        Receipt
-                    </Avatar>}
-                    
-                /> */}
-                  <Button className={classes.dialogBtn} size="small" onClick={() => props.handleCategory(props.category.strCategory)}>More...</Button>
-          
-                { /*</Card>/ </div>onClick={() => props.handleCategory(props.category.strCategory)}> */}
-                <CardMedia className={classes.cardImg} image={props.category.strCategoryThumb} alt={props.category.strCategoryThumb}
+                <Button className={classes.dialogBtn} size="small"
+                    onClick={() => props.handleCategory(props.category.strCategory)}>
+                    More...
+                </Button>
+                <CardMedia className={classes.cardImg} image={props.category.strCategoryThumb}
+                    alt={props.category.strCategoryThumb}
                 />
                 <CardContent className={classes.cardContent} >
-                    <Typography className={classes.cardOverline}>{props.category.strCategory}</Typography>
-                    {/* <Typography className={classes.cardInfoText}> {props.category.strCategoryDescription}</Typography> */}
+                    <Typography className={classes.cardOverline}>{props.category.strCategory}
+                    </Typography>
                     <ShowMoreText
-                        lines={isMobile?4:2}
+                        lines={isMobile ? 4 : 2}
                         more={<ExpandMore />}
                         less={<ExpandLess />}
                         onClick={clickExpand}
                         expanded={expand}
-                    // width={10}
                     >
                         {props.category.strCategoryDescription}
                     </ShowMoreText>

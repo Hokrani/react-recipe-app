@@ -4,9 +4,9 @@ import { Grid } from '@material-ui/core';
 import Paging from '../reusable/Paging';
 import { subMenuStyles } from '../../styles/sharedStyles';
 import { connect } from 'react-redux';
-import Meal from '../reusable/Meal';
-import { getMealTypeFetch,  getSubCategoryFetch } from '../../actions/actions';
-import MealContent from '../reusable/MealContent';
+import Receipe from '../reusable/Receipe';
+import { getReceipeTypeFetch,  getSubCategoryFetch } from '../../actions/actions';
+import ReceipeContent from '../reusable/ReceipeContent';
 import CircularProgress from '@mui/material/CircularProgress';
 
 class SubMenu extends React.Component {
@@ -27,8 +27,8 @@ class SubMenu extends React.Component {
     componentDidUpdate() {
         this.scrollToMyRef();
     }
-    handleMeal = (MealType) => {
-        this.props.getMealTypeFetch(MealType);
+    handleReceipe = (receipeType) => {
+        this.props.getReceipeTypeFetch(receipeType);
         this.setState({ page: 1 });
     }
     handlePageChange = (e, value) => {
@@ -43,14 +43,14 @@ class SubMenu extends React.Component {
             <>
                 <div ref={this.myRef}>
                     {this.props.loading && <CircularProgress color="inherit" />}
-                    {this.props.mealcontent && <MealContent mealcontent={this.props.mealcontent} handleClose={this.handleClose} />}
-                    {this.props.subCategory && !this.props.mealcontent &&
+                    {this.props.receipeContent && <ReceipeContent receipeContent={this.props.receipeContent} handleClose={this.handleClose} />}
+                    {this.props.subCategory && !this.props.receipeContent &&
                         <>
                             <Grid className={this.classes.card} container spacing={3}>
-                                {this.props.subCategory.slice((this.state.page - 1) * 8, this.state.page * 8).map((meal, index) => {
+                                {this.props.subCategory.slice((this.state.page - 1) * 8, this.state.page * 8).map((receipe, index) => {
                                     return (
                                         <Grid className={this.classes.gridItem} item xs={6} sm={3} key={index}>
-                                            <Meal meal={meal} handleMeal={this.handleMeal} />
+                                            <Receipe receipe={receipe} handleReceipe={this.handleReceipe} />
                                         </Grid>
                                     )
                                 })}
@@ -67,15 +67,14 @@ function mapStateToProps(state) {
     return {
         loading: state.receipeReducer.loadingData,
         subCategory: state.receipeReducer.subCategory,
-        mealcontent: state.receipeReducer.mealType
+        receipeContent: state.receipeReducer.receipeType
     }
 };
 
 function mapDispatchToProps(dispatch) {
     return {
         getSubCategoryFetch: () => dispatch(getSubCategoryFetch()),
-        getMealTypeFetch: (MealType) => dispatch(getMealTypeFetch(MealType)),
-        getSubCategoryFetch: () => dispatch(getSubCategoryFetch()),
+        getReceipeTypeFetch: (receipeType) => dispatch(getReceipeTypeFetch(receipeType)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SubMenu);

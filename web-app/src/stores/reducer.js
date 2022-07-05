@@ -1,36 +1,33 @@
-import {SET_FETCH_DATA,
-        SET_FETCH_DATA_SUCCESS,
-        FETCH_INITIAL_DATA,
-         GET_CATEGORY_SUCCESS,
-         GET_SUBCATEGORY_SUCCESS,
-         GET_MEALTYPE_SUCCESS,
-         SET_CATEGORY_TYPE,
+import {
+    SET_FETCH_DATA,
+    SET_FETCH_DATA_SUCCESS,
+    GET_CATEGORY_SUCCESS,
+    GET_SUBCATEGORY_SUCCESS,
+    GET_RECEIPETYPE_SUCCESS,
+    SET_CATEGORY_TYPE,
 } from '../constant';
 
-const initial={ 
-    loadingData:false, 
-    categoryType:'',
-    categories:'',
-    subCategory:'',
-    mealType:'',
-    }
+const initial = {
+    loadingData: false,
+    categoryType: '',
+    categories: '',
+    subCategory: '',
+    receipeType: '',
+}
 const receipeReducer = (state = initial, action) => {
     switch (action.type) {
-        case FETCH_INITIAL_DATA:
-            console.log("In FETCH_INITIAL_DATA ")
-            return{...state, categories:action.category}
         case SET_FETCH_DATA:
-            return{...state, loadingData:true}
+            return { ...state, loadingData: true }
         case SET_FETCH_DATA_SUCCESS:
-                return{...state, loadingData:false}
+            return { ...state, loadingData: false }
         case SET_CATEGORY_TYPE:
-                return{...state,categoryType:action.categoryType}
+            return { ...state, categoryType: action.categoryType }
         case GET_CATEGORY_SUCCESS:
-            return{...state, loadingData:false,categories:action.category,mealType:''}
+            return { ...state, loadingData: false, categories: action.category, receipeType: '' }
         case GET_SUBCATEGORY_SUCCESS:
-                return{...state,loadingData:false, categories:'',subCategory:action.subcategory,mealType:''}
-        case GET_MEALTYPE_SUCCESS:
-            return{...state, loadingData:false,categories:'',mealType:action.mealType}
+            return { ...state, loadingData: false, categories: '', subCategory: action.subcategory, receipeType: '' }
+        case GET_RECEIPETYPE_SUCCESS:
+            return { ...state, loadingData: false, categories: '', receipeType: action.receipeType }
         default:
             return state;
     }

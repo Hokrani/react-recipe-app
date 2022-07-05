@@ -1,9 +1,8 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-import { textStyles } from '../../styles/sharedStyles';
+// import { textStyles } from '../../styles/sharedStyles';
 
 function About() {
-    const classes = textStyles();
+    // const classes = textStyles();
 
     return (
         <>

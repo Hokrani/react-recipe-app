@@ -36,10 +36,10 @@ const Ingredients=(props)=> {
     
     // Convert json to array and slice array for ingredients and measures, 
     // then loop over them to remove null values
-    Object.keys(props.meal).map((key) => props.meal[key]).slice(9, 29).forEach((item, index) => {
+    Object.keys(props.receipe).map((key) => props.receipe[key]).slice(9, 29).forEach((item, index) => {
       if(item) {
         ingredients.push(item)
-        measures.push(Object.keys(props.meal).map((key) => props.meal[key]).slice(29, 49)[index])
+        measures.push(Object.keys(props.receipe).map((key) => props.receipe[key]).slice(29, 49)[index])
       }
     })
     // Add table for displaying ingredients
