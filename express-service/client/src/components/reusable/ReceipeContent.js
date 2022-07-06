@@ -12,8 +12,11 @@ import Link from '@mui/material/Link';
 function ReceipeContent(props) {
   const classes = receipeContentStyles();
   const scroll = 'paper';
-  const stepsText = props.receipeContent.strInstructions.split(".");
-
+  const stepsText = props.receipeContent.strInstructions.split("\n" || ".");
+  let flagForSteps = false;
+  let counter = 0;
+  if (stepsText[0].indexOf('Steps') > 1)
+    flagForSteps = true;
 
   return (
     <div>
@@ -44,15 +47,28 @@ function ReceipeContent(props) {
         </Typography>
 
         {stepsText.map((item, index) => {
-          if ((stepsText.length - 1) !== index) {
-            return (
-              <DialogContentText className={classes.infoText}>
-                {index + 1}.{item}.
-              </DialogContentText>
-            )
-          }
-          return null;
+          if ((stepsText.length - 1) !== index && item.length > 1) {
+            if (flagForSteps) {
+              return (
+                <DialogContentText className={classes.infoText}>
+                  {item}
+                </DialogContentText>
+              )
+            } else{
+              counter++;
+              return (
+                <DialogContentText className={classes.infoText}>
+                  {counter}.{item}
+                </DialogContentText>
+              )
+            }
+          } else if(stepsText) 
+            return (<DialogContentText className={classes.infoText}>
+              {item}
+            </DialogContentText>)
+          
         }
+        
         )}
         {props.receipeContent.strYoutube && (
           <>
