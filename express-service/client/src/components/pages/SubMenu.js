@@ -43,7 +43,7 @@ class SubMenu extends React.Component {
             <>
                 <div ref={this.myRef}>
                     {this.props.loading && <CircularProgress color="inherit" />}
-                    {this.props.receipeContent && <ReceipeContent receipeContent={this.props.receipeContent} handleClose={this.handleClose} />}
+                    {this.props.receipeContent && <ReceipeContent key={this.props.receipeContent.idMeal} receipeContent={this.props.receipeContent} handleClose={this.handleClose} />}
                     {this.props.subCategory && !this.props.receipeContent &&
                         <>
                             <Grid className={this.classes.card} container spacing={3}>

@@ -1,4 +1,4 @@
-import { delay, put, race, select, takeEvery } from 'redux-saga/effects';
+import { delay, put, race, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import {
     SET_FETCH_DATA,
     SET_FETCH_DATA_SUCCESS,
@@ -28,9 +28,10 @@ function* getCategoryFetch() {
             .catch(err => console.log("Error while fetching the category data")),
         timeout: delay(1000),
     })
-    const category = (response === undefined || response === null || response.length === 0)
-        ? default_menu.categories
-        : response;
+    // const category = (response === undefined || response === null || response.length === 0)
+    //     ? default_menu.categories
+    //     : response;
+    const category=response;
     yield put({ type: GET_CATEGORY_SUCCESS, category })
 }
 
@@ -47,10 +48,12 @@ function* getSubCategoryFetch() {
                 .catch(err => console.log("Error while fetching the sub-category data")),
             timeout: delay(1000),
         })
-        const subcategory = (response === undefined || response === null || response.length === 0)
-            ? default_subMenu.meals
-            : response;
-        yield put({ type: GET_SUBCATEGORY_SUCCESS, subcategory });
+        // // const subcategory = (response === undefined || response === null || response.length === 0)
+        //     ? default_subMenu.meals
+        //     : response;
+        const subcategory =response;
+        console.log("subcategory :"+subcategory)
+        yield put({ type: GET_SUBCATEGORY_SUCCESS, subcategory });        
     } else {
         yield put({ type: SET_FETCH_DATA_SUCCESS });
     }
@@ -67,21 +70,26 @@ function* getReceipeTypeFetch(action) {
             .catch(err => console.log("Error while fetching the sub-category data")),
         timeout: delay(1000),
     })
-    const receipeType = (response === undefined || response === null || response.length === 0)
-        ? default_receipe.meals[0]
-        : response;
+    
+    // const receipeType = (response === undefined || response === null || response.length === 0)
+    //     ? default_receipe.meals[0]
+    //     : response;
+
+    const receipeType=response;
     yield put({ type: GET_RECEIPETYPE_SUCCESS, receipeType })
+   
 }
 
 function* setCategoryType(action) {
     let categoryType = action.categoryType;
     yield put({ type: SET_CATEGORY_TYPE, categoryType })
+    console.log("categoryType :"+categoryType)
 }
 function* Saga() {
-    yield takeEvery(GET_CATEGORY_FETCH, getCategoryFetch);
-    yield takeEvery(GET_SUBCATEGORY_FETCH, getSubCategoryFetch);
-    yield takeEvery(GET_RECEIPETYPE_FETCH, getReceipeTypeFetch);
-    yield takeEvery(SET_SUBCATEGORY_TYPE, setCategoryType);
+    yield takeLatest(GET_CATEGORY_FETCH, getCategoryFetch);
+    yield takeLatest(GET_SUBCATEGORY_FETCH, getSubCategoryFetch);
+    yield takeLatest(GET_RECEIPETYPE_FETCH, getReceipeTypeFetch);
+    yield takeLatest(SET_SUBCATEGORY_TYPE, setCategoryType);
 }
 
 export default Saga;
