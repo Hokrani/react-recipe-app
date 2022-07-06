@@ -52,7 +52,6 @@ function* getSubCategoryFetch() {
             ? default_subMenu.meals
             : response;
         // const subcategory =response;
-        console.log("subcategory :"+subcategory)
         yield put({ type: GET_SUBCATEGORY_SUCCESS, subcategory }); 
     } else {
         yield put({ type: SET_FETCH_DATA_SUCCESS });

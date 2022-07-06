@@ -175,9 +175,16 @@ export const textStyles = makeStyles({
         textAlign: 'center',
         fontWeight: 600,
         fontSize: '5vh',
+        // display: 'inline-block',
+        paddingBottom: '5%',
+        fontFamily: 'Georgia',
     },
     infoText: {
-        textAlign: 'center',
-        fontSize: '3vh',
+        // textAlign: 'center',
+        paddingLeft:'5%',
+        paddingRight:'5%',
+        fontSize: '2.5vh',
+        display: 'inline-block',
+        fontFamily: 'Trebuchet MS',
     },
 }, { index: 1 });

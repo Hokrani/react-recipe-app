@@ -66,8 +66,9 @@ function ReceipeContent(props) {
             return (<DialogContentText className={classes.infoText}>
               {item}
             </DialogContentText>)
-          
+            return null; 
         }
+     
         
         )}
         {props.receipeContent.strYoutube && (
