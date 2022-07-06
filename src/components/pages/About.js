@@ -23,12 +23,15 @@ const About=()=> {
                             {/* </Typography> */}</p>
                 
                 <p> This web application can run on both Desktop and mobile application.</p>
+                
             </Typography>
             <Typography className={classes.infoText} variant="h5">
+                
                 If you wish to check some of my other works, 
                 head over to my github right <i><a href="https://github.com/Hokrani?tab=repositories">here!</a></i>
-            
-            </Typography>
+                <p>Contact me @ <a href="hokrani@gmail.com">hokrani@gmail.com</a></p>
+            </Typography>            
+          <Typography className={classes.mainText} variant="h4">Thank you !!</Typography>
         </>
     )
 }

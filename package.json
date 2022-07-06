@@ -1,6 +1,6 @@
 {
-  "name": "web-app",
-  "version": "0.1.0",
+  "name": "react-receipe-app",
+  "version": "5.0.0.0",
   "private": true,
   "proxy" : "http://localhost:3001",
   "dependencies": {
@@ -37,16 +37,9 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+  "browserslist": {    
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 chrome version"
     ]
   }
 }
