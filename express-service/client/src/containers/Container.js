@@ -2,7 +2,7 @@ import React from 'react';
 import { Container as MyContainer } from '@material-ui/core';
 import { containerStyles } from '../styles/sharedStyles';
 
-function Container(props) {
+const Container=(props)=>{
     const classes = containerStyles();
 
     return (

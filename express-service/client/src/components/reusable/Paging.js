@@ -2,6 +2,9 @@ import { Pagination } from '@material-ui/lab';
 import { menuGridStyles } from '../../styles/sharedStyles';
 import Box from '@mui/material/Box';
 
+/**
+ * This is component to display Pagination at the bottom of the page. 
+ */
 
 const Paging = (props) => {
     const classes = menuGridStyles();

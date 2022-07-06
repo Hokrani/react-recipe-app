@@ -29,6 +29,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
+
+  /**
+ * This is component to display ingredients in table formate. 
+ */
 const Ingredients=(props)=> {
 
     let ingredients = []

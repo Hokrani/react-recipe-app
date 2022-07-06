@@ -3,7 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 import Menu from '../components/pages/Menu';
 import SubMenu from '../components/pages/SubMenu';
 import About from '../components/pages/About';
-function Routes() {
+/**
+ * This is component is to define the routes. 
+ */
+const Routes=()=> {
     return (
         <Switch>
              <Route exact from="/" render={props => <Menu {...props} />} />

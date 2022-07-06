@@ -20,8 +20,8 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         paddingTop: '10px',
         paddingBottom: '10px',
-        paddingRight:'20px',
-        paddingLeft:'20px',
+        paddingRight: '20px',
+        paddingLeft: '20px',
     },
     menuButton: {
         marginRight: theme.spacing(2)
@@ -41,10 +41,13 @@ const useStyles = makeStyles(theme => ({
         color: 'black',
         fontSize: '4.5vh',
         paddingRight: '30px'
-        
+
     },
 }));
 
+/**
+ * This component is to display Header of the  page.
+ */
 const Header = props => {
     const { history } = props;
     const classes = useStyles();
@@ -59,6 +62,7 @@ const Header = props => {
         setAnchorEl(event.currentTarget);
     };
 
+    // Navigate to page based on button clicked and fetch value from API.
     const handleButtonClick = (pageURL, btnName) => {
         if (btnName === 'Menu')
             dispatch(getCategoryFetch())
@@ -68,29 +72,14 @@ const Header = props => {
         setAnchorEl(null);
     };
 
-    // const menuItems = [
-    //     {
-    //         menuTitle: "Menu",
-    //         pageURL: "/"
-    //     },
-    //     {
-    //         menuTitle: "Sub Menu",
-    //         pageURL: "/subMenu",
-    //     },
-    //     {
-    //         menuTitle: "About",
-    //         pageURL: "/about"
-    //     }
-    // ];
-
     return (
         <div className={classes.root}>
             <AppBar position="static" color="#ffffff">
                 <Toolbar >
                     {/* <img src={ReactLogo} alt="React Logo" /> */}
-                    <IconButton className={classes.home} component={NavLink} 
-                                to="/">
-                    <HomeOutlinedIcon className={classes.homeBtn}/>
+                    <IconButton className={classes.home} component={NavLink}
+                        to="/">
+                        <HomeOutlinedIcon className={classes.homeBtn} />
                     </IconButton>
                     <Typography variant="h4" className={classes.title}>
                         Receipe

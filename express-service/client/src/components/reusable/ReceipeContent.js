@@ -9,7 +9,10 @@ import { receipeContentStyles } from '../../styles/sharedStyles';
 import ReactPlayer from "react-player";
 import Link from '@mui/material/Link';
 
-function ReceipeContent(props) {
+/**
+ * This is component to display receipe content the page. 
+ */
+const ReceipeContent = (props) => {
   const classes = receipeContentStyles();
   const scroll = 'paper';
   const stepsText = props.receipeContent.strInstructions.split("\n" || ".");
@@ -54,7 +57,7 @@ function ReceipeContent(props) {
                   {item}
                 </DialogContentText>
               )
-            } else{
+            } else {
               counter++;
               return (
                 <DialogContentText className={classes.infoText}>
@@ -62,14 +65,12 @@ function ReceipeContent(props) {
                 </DialogContentText>
               )
             }
-          } else if(stepsText) 
+          } else if (stepsText)
             return (<DialogContentText className={classes.infoText}>
               {item}
             </DialogContentText>)
-            return null; 
+          return null;
         }
-     
-        
         )}
         {props.receipeContent.strYoutube && (
           <>

@@ -11,8 +11,9 @@ import {
 } from '../../actions/actions';
 import CircularProgress from '@mui/material/CircularProgress';
 
-
-
+/**
+ * This is component to display all receipe category in the main page. 
+ */
 const Menu = (props) => {
   const classes = menuGridStyles();
   const { history } = props;
@@ -21,14 +22,19 @@ const Menu = (props) => {
   let categories = useSelector(state => state.receipeReducer.categories);
   const [page, setPage] = useState(1);
   const myRef = useRef(null)
+  
+    // once the page is loaded, mouse pointer should move top of the page
   const scrollToRef = (ref) => window.scrollTo(0, 0) 
 
+
+  // load the all category receipent once the page is loaded. 
   useEffect(() => {
     dispatch(getCategoryFetch());
     setPage(1);
     scrollToRef(myRef);
   },[dispatch])
 
+  // Once user click on category type, store in redux and fetch the sub-category list
   const handleCategory = (categoryType) => {
     dispatch(setSubCategory(categoryType));
     dispatch(getSubCategoryFetch());
@@ -36,6 +42,7 @@ const Menu = (props) => {
     setPage(1)
   }
 
+  // Once the page link is clicked, it should navigate to other page.
   const handlePageChange = (e, value) => {
     setPage(value);
     scrollToRef(myRef);
@@ -45,7 +52,7 @@ const Menu = (props) => {
   return (
     <>
       <div ref={myRef}>
-        {loading && <CircularProgress color="inherit" />}
+        {loading && <CircularProgress color="inherit" /> } 
         {categories && (
           <>
             <Grid className={classes.grid} container spacing={3}>

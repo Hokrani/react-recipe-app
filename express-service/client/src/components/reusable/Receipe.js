@@ -8,6 +8,9 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 
+/**
+ * This is component to display receipe in card formate. 
+ */
 const Receipe = (props) => {
     const classes = subMenuCardStyles();
     const theme = useTheme();

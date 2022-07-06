@@ -11,7 +11,9 @@ import Button from '@material-ui/core/Button';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 
-
+/**
+ * This is component to display category in card formate. 
+ */
 const Category = (props) => {
     const classes = cardStyles();
     const theme = useTheme();
@@ -21,7 +23,10 @@ const Category = (props) => {
     const clickExpand = () => {
         setExpand(!expand);
     };
+    
+  // Once the page link is clicked, then card content display top.
     const scrollToRef = (ref) => window.scrollTo(0, 0)
+
     useEffect(() => {
         scrollToRef(myRef);
     }, [])

@@ -18,7 +18,10 @@ import default_menu from '../data/default_menu.json'
 import default_subMenu from '../data/default_subMenu.json';
 import default_receipe from '../data/default_receipe.json';
 
-
+/**
+ * To fetch all category list from API and store in the redux store.
+ * @param null.
+ */
 function* getCategoryFetch() {
     yield put({ type: SET_FETCH_DATA });
     const { response } = yield race({
@@ -35,6 +38,11 @@ function* getCategoryFetch() {
     yield put({ type: GET_CATEGORY_SUCCESS, category })
 }
 
+/**
+ * To fetch all sub-category list from API based on sub-category type selected
+ *  and store in the redux store.
+ * @param null.
+ */
 function* getSubCategoryFetch() {
     const selectState = yield select();
     yield put({ type: SET_FETCH_DATA });
@@ -58,7 +66,10 @@ function* getSubCategoryFetch() {
     }
 }
 
-
+/**
+ * To fetch receipe contents from API and store in the redux store.
+ * @param null.
+ */
 function* getReceipeTypeFetch(action) {
     yield put({ type: SET_FETCH_DATA })
     const url = RECEIPETYPE_URL + action.receipeType;
@@ -78,6 +89,10 @@ function* getReceipeTypeFetch(action) {
     yield put({ type: GET_RECEIPETYPE_SUCCESS, receipeType })
 }
 
+/**
+ * To store category type in the redux store.
+ * @param {categoryType}  type of sub-category.
+ */
 function* setCategoryType(action) {
     let categoryType = action.categoryType;
     yield put({ type: SET_CATEGORY_TYPE, categoryType }) 
@@ -89,8 +104,6 @@ function* Saga() {
     yield takeEvery(GET_SUBCATEGORY_FETCH, getSubCategoryFetch);
     yield takeEvery(GET_RECEIPETYPE_FETCH, getReceipeTypeFetch);
     yield takeEvery(SET_SUBCATEGORY_TYPE, setCategoryType);
-
-
 }
 
 export default Saga;

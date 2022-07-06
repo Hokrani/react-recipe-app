@@ -2,9 +2,11 @@ import React from 'react';
 import { textStyles } from '../../styles/sharedStyles';
 import { Typography } from '@material-ui/core';
 
-function About() {
+/**
+ * This component is to display About page.
+ */
+const About=()=> {
     const classes = textStyles();
-
     return (
         <>
             <Typography className={classes.mainText} variant="h4">About Page</Typography>
@@ -19,7 +21,8 @@ function About() {
                              Saga for middleware application, 
                              Material UI for design. 
                             {/* </Typography> */}</p>
-                 This web application can run on both Desktop and mobile application.
+                
+                <p> This web application can run on both Desktop and mobile application.</p>
             </Typography>
             <Typography className={classes.infoText} variant="h5">
                 If you wish to check some of my other works, 
