@@ -1,4 +1,4 @@
-import { delay, put, race, select, takeEvery } from 'redux-saga/effects';
+import { delay, put, race, select, fork,take,cancel } from 'redux-saga/effects';
 import {
     SET_FETCH_DATA,
     SET_FETCH_DATA_SUCCESS,
@@ -29,12 +29,10 @@ function* getCategoryFetch() {
             .then((res) => res.json())
             .then((json) => json.categories)
             .catch(err => console.log("Error while fetching the category data")),
-        timeout: delay(1000),
     })
     const category = (response === undefined || response === null || response.length === 0)
         ? default_menu.categories
         : response;
-    // const category=response;
     yield put({ type: GET_CATEGORY_SUCCESS, category })
 }
 
@@ -54,12 +52,10 @@ function* getSubCategoryFetch() {
                 .then((res) => res.json())
                 .then((json) => json.meals)
                 .catch(err => console.log("Error while fetching the sub-category data")),
-            timeout: delay(1000),
         })
         const subcategory = (response === undefined || response === null || response.length === 0)
             ? default_subMenu.meals
             : response;
-        // const subcategory =response;
         yield put({ type: GET_SUBCATEGORY_SUCCESS, subcategory }); 
     } else {
         yield put({ type: SET_FETCH_DATA_SUCCESS });
@@ -78,14 +74,11 @@ function* getReceipeTypeFetch(action) {
             .then((res) => res.json())
             .then((json) => json.meals[0])
             .catch(err => console.log("Error while fetching the sub-category data")),
-        timeout: delay(1000),
     })
     
     const receipeType = (response === undefined || response === null || response.length === 0)
         ? default_receipe.meals[0]
         : response;
-
-    // const receipeType=response;
     yield put({ type: GET_RECEIPETYPE_SUCCESS, receipeType })
 }
 
@@ -98,12 +91,22 @@ function* setCategoryType(action) {
     yield put({ type: SET_CATEGORY_TYPE, categoryType }) 
 }
 
+const takeLatest = (patternOrChannel, saga, ...args) => fork(function*() {
+    let lastTask
+    while (true) {
+      const action = yield take(patternOrChannel)
+      if (lastTask) {
+        yield cancel(lastTask) // cancel is no-op if the task has already terminated
+      }
+      lastTask = yield fork(saga, ...args.concat(action))
+    }
+  })
 
 function* Saga() {
-    yield takeEvery(GET_CATEGORY_FETCH, getCategoryFetch);
-    yield takeEvery(GET_SUBCATEGORY_FETCH, getSubCategoryFetch);
-    yield takeEvery(GET_RECEIPETYPE_FETCH, getReceipeTypeFetch);
-    yield takeEvery(SET_SUBCATEGORY_TYPE, setCategoryType);
+    yield takeLatest(GET_CATEGORY_FETCH, getCategoryFetch);
+    yield takeLatest(GET_SUBCATEGORY_FETCH, getSubCategoryFetch);
+    yield takeLatest(GET_RECEIPETYPE_FETCH, getReceipeTypeFetch);
+    yield takeLatest(SET_SUBCATEGORY_TYPE, setCategoryType);
 }
 
 export default Saga;

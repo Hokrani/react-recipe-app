@@ -13,6 +13,7 @@ creating an intuitive React web application. It support all device including mob
 - React JS
 - Redux 
 - Saga Middleware
+- Express JS
 - Material-ui
 - TheMealDB API
 
@@ -25,14 +26,19 @@ creating an intuitive React web application. It support all device including mob
 
 1. Pull the git project to a directory of your choosing
 2. Navigate to the directory where you have downloaded the source code
-3. Run `npm install` to install all necessary dependencies for the project
-4. Run `npm start` to start the web application 
-5. Navigate to `localhost:3000` in your favorite web browser if web application has not automatically been opened
-6. Use the application to your heart's content! :)
+3. Run below command  to install all necessary dependencies for the client i.e react project
+     `cd .\client\`
+     `npm install` 
+    
+4. Run  to install all necessary dependencies for the back-end project like express
+    `cd..`
+    `npm install`
+5. Run `npm start` to start the both back-end and web application 
+6. Navigate to `localhost:3000` in your favorite web browser if web application has not automatically been opened
+7. Use the application to your heart's content! :)
 
 ### Improvement 
-1. Using back-end server (like express.js), fetch the data and send to front end server. 
-
+NA
 
 ### Conclusion
 The same application can be developed using React Native for mobile.  
