@@ -1,4 +1,4 @@
-import { delay, put, race, select, fork,take,cancel } from 'redux-saga/effects';
+import {  put, race, select, fork,take,cancel } from 'redux-saga/effects';
 import {
     SET_FETCH_DATA,
     SET_FETCH_DATA_SUCCESS,

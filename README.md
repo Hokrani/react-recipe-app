@@ -28,8 +28,7 @@ creating an intuitive React web application. It support all device including mob
 2. Navigate to the directory where you have downloaded the source code
 3. Run below command  to install all necessary dependencies for the client i.e react project
      `cd .\client\`
-     `npm install` 
-    
+     `npm install`     
 4. Run  to install all necessary dependencies for the back-end project like express
     `cd..`
     `npm install`
