@@ -42,3 +42,21 @@ NA
 
 ### Conclusion
 The same application can be developed using React Native for mobile.  
+
+
+### Preview
+
+Main Page 
+
+![1](https://user-images.githubusercontent.com/29490752/178024443-6113d768-8a0a-42d2-b67e-0e5fece42d64.png)
+
+Sub-Category Page
+
+![2](https://user-images.githubusercontent.com/29490752/178025117-9487efbf-4757-4baf-8268-9ac4410dad5a.png)
+
+Receipe Details
+
+![3](https://user-images.githubusercontent.com/29490752/178026304-43f9c3e1-9dcf-4b93-b077-297dd7d2cd24.png)
+
+
+
