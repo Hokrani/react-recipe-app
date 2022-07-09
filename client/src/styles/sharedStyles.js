@@ -188,3 +188,15 @@ export const textStyles = makeStyles({
         fontFamily: 'Trebuchet MS',
     },
 }, { index: 1 });
+
+
+export const progressBarStyles = makeStyles({
+    
+    progressBar: {
+        alignItems: "center", 
+        display: "flex",
+         justifyContent: "center", 
+         height: "100vh", 
+         width: "80vw"
+    },
+}, { index: 1 });

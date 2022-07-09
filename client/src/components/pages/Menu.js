@@ -9,7 +9,7 @@ import {
   getSubCategoryFetch,
   setSubCategory
 } from '../../actions/actions';
-import CircularProgress from '@mui/material/CircularProgress';
+import ProgressBar from '../reusable/ProgressBar';
 
 /**
  * This is component to display all receipe category in the main page. 
@@ -52,7 +52,7 @@ const Menu = (props) => {
   return (
     <>
       <div ref={myRef}>
-        {loading && <CircularProgress color="inherit" /> } 
+        {loading &&  <ProgressBar />}
         {categories && (
           <>
             <Grid className={classes.grid} container spacing={3}>

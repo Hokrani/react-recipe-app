@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Receipe from '../reusable/Receipe';
 import { getReceipeTypeFetch,  getSubCategoryFetch } from '../../actions/actions';
 import ReceipeContent from '../reusable/ReceipeContent';
-import CircularProgress from '@mui/material/CircularProgress';
+import ProgressBar from '../reusable/ProgressBar';
 
 /**
  * This is component to display all sub category receipe. 
@@ -56,7 +56,7 @@ class SubMenu extends React.Component {
         return (
             <>
                 <div ref={this.myRef}>
-                    {this.props.loading && <CircularProgress color="inherit" />}
+                    {this.props.loading && <ProgressBar />}
                     {this.props.receipeContent && <ReceipeContent key={this.props.receipeContent.idMeal} receipeContent={this.props.receipeContent} handleClose={this.handleClose} />}
                     {this.props.subCategory && !this.props.receipeContent &&
                         <>
